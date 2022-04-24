@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name', 100)->nullable()->default('item name');
-            $table->text('description')->nullable()->default('description');
+            $table->text('description')->nullable();
             $table->string('type', 100)->nullable()->default('type');
             $table->unsignedInteger('price')->unsigned()->nullable()->default(12);
             $table->unsignedInteger('quantity_in_stock')->unsigned()->nullable()->default(12);
