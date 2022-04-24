@@ -17,8 +17,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
+        $password = bcrypt('password');
         $faker = Factory::create();
-        $user1 = User::create(['name' => $faker->name, 'email' => $faker->email, 'password' => 'password']);
-        $user2 = User::create(['name' => $faker->name, 'email' => $faker->email, 'password' => 'password']);
+        $user1 = User::create(['name' => $faker->name, 'email' => $faker->email, 'password' => $password]);
+        $user2 = User::create(['name' => $faker->name, 'email' => $faker->email, 'password' => $password]);
     }
 }
