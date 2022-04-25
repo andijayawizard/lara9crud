@@ -12,4 +12,8 @@ class Product extends Model
     protected $fillable = [
         'name', 'detail'
     ];
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
+    }
 }

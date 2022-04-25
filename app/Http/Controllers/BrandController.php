@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class BrandController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +19,8 @@ class BrandController extends Controller
      */
     public function index()
     {
-        return view('brands.index');
+        $brands = Brand::latest()->paginate(5);
+        return view('brands.index', compact('brands'));
     }
 
     /**
@@ -23,7 +30,7 @@ class BrandController extends Controller
      */
     public function create()
     {
-        //
+        return view('brands.create');
     }
 
     /**
@@ -34,7 +41,21 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'acak' => 'required|image|mimes:png,jpg,jpeg,gif,svg|max:2048',
+            'nama' => 'required|min:5',
+            'rgks' => 'required|min:10',
+            'ktrg' => 'required|min:10'
+        ]);
+        $acak = $request->file('acak');
+        $acak->storeAs('public/brands', $acak->hashName());
+        Brand::create([
+            'acak' => $acak->hashName(),
+            'nama' => $request->nama,
+            'rgks' => $request->rgks,
+            'ktrg' => $request->ktrg,
+        ]);
+        return redirect()->route('brands.index')->with(['success' => 'Data berhasil disimpan!']);
     }
 
     /**
@@ -43,9 +64,9 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Brand $brand)
     {
-        //
+        return view('brands.show', compact('brand'));
     }
 
     /**
@@ -54,9 +75,9 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Brand $brand)
     {
-        //
+        return view('brands.edit', compact('brand'));
     }
 
     /**
@@ -66,9 +87,32 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Brand $brand)
     {
-        //
+        $this->validate($request, [
+            'acak' => 'image|mimes:png,jpg,jpeg,gif,svg|max:2048',
+            "nama" => 'required|min:5',
+            'rgks' => 'required|min:10',
+            'ktrg' => 'required|min:10'
+        ]);
+        if ($request->hasFile('acak')) {
+            $acak = $request->file('acak');
+            $acak->storeAs('public/brands', $acak->hashName());
+            Storage::delete('public/brands' . $brand->acak);
+            $brand->update([
+                'acak' => $acak->hashName(),
+                'nama' => $request->nama,
+                'rgks' => $request->rgks,
+                'ktrg' => $request->ktrg,
+            ]);
+        } else {
+            $brand->update([
+                'nama' => $request->nama,
+                'rgks' => $request->rgks,
+                'ktrg' => $request->ktrg,
+            ]);
+        }
+        return redirect()->route('brands.index')->with(['success' => 'Data berhasil diubah']);
     }
 
     /**
@@ -77,8 +121,10 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Brand $brand)
     {
-        //
+        Storage::delete('public/brands' . $brand->acak);
+        $brand->delete();
+        return redirect()->route('brands.index')->with(['success' => 'Data berhasil dihapus']);
     }
 }
