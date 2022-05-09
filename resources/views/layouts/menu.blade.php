@@ -27,13 +27,21 @@
     </a>
     <ul class="nav nav-treeview">
         <li class="nav-item">
+            <a href="{{ route('categories.index') }}"
+                class="nav-link {{ Request::is('categories') ? 'active' : '' }}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Categories</p>
+            </a>
+        </li>
+        <li class="nav-item">
             <a href="{{ route('brands.index') }}" class="nav-link {{ Request::is('brands') ? 'active' : '' }}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Brands</p>
             </a>
         </li>
         <li class="nav-item">
-            <a href="{{ route('products.index') }}" class="nav-link {{ Request::is('products') ? 'active' : '' }}">
+            <a href="{{ route('products.index') }}"
+                class="nav-link {{ Request::is('products') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-home"></i>
                 <p>Products</p>
             </a>
