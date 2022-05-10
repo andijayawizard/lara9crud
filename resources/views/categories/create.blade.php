@@ -5,6 +5,7 @@
             <div class="col-md-12">
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
+                        Insert Category
                         <form action="{{ route('categories.store') }}" method="POST" enctype="multipart/form-data">
 
                             @csrf
@@ -22,9 +23,9 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="font-weight-bold">Nama Brand</label>
+                                <label class="font-weight-bold">Nama Category</label>
                                 <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama"
-                                    value="{{ old('nama') }}" placeholder="Nama Brand">
+                                    value="{{ old('nama') }}" placeholder="Nama Category">
 
                                 <!-- error message untuk title -->
                                 @error('nama')
