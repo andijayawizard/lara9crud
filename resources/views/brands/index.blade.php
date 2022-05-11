@@ -6,7 +6,7 @@
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
                         <a href="{{ route('brands.create') }}" class="btn btn-md btn-success mb-3">Add new Brand</a>
-                        <table class="table table-bordered">
+                        <table class="table table-bordered table-striped table-hover">
                             <thead>
                                 <tr>
                                     <th scope="col">Image</th>
@@ -27,15 +27,15 @@
                                         <td>{!! $item->rgks !!}</td>
                                         <td>{!! $item->ktrg !!}</td>
                                         <td class="text-center">
-                                            <a class="btn btn-info btn-sm"
+                                            <a class="btn btn-info btn-xs"
                                                 href="{{ route('brands.show', $item->id) }}">Show</a>
                                             <a href="{{ route('brands.edit', $item->id) }}"
-                                                class="btn btn-sm btn-primary">Edit</a>
+                                                class="btn btn-xs btn-primary">Edit</a>
                                             <form onsubmit="return confirm('Apakah Anda Yakin ?');"
                                                 action="{{ route('brands.destroy', $item->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
+                                                <button type="submit" class="btn btn-xs btn-danger">HAPUS</button>
                                             </form>
                                         </td>
                                     </tr>

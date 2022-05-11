@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Invoice;
 use App\Models\Item;
@@ -24,8 +25,12 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         $password = bcrypt('password');
         $faker = Factory::create();
-        $user1 = User::create(['name' => 'andijaya', 'email' => 'andijayawizard@gmail.com', 'password' => $password]);
-        $user2 = User::create(['name' => $faker->name, 'email' => $faker->email, 'password' => $password]);
+        // $user1 = User::create(['name' => 'andijaya', 'email' => 'andijayawizard@gmail.com', 'password' => bcrypt('andijaya')]);
+        $user1 = User::create(['name' => $faker->name, 'email' => $faker->email, 'password' => $password]);
+
+        for ($i = 0; $i <= 4; $i++) {
+            $brand = Brand::create(['nama' => $faker->word, 'rgks' => $faker->word, 'ktrg' => $faker->word]);
+        }
 
         $category1 = Category::create(['name' => $faker->word]);
         $category2 = Category::create(['name' => $faker->word]);
