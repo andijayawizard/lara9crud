@@ -5,6 +5,7 @@
             <div class="col-md-12">
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
+                        Add New Brand
                         <form action="{{ route('brands.store') }}" method="POST" enctype="multipart/form-data">
 
                             @csrf

@@ -5,6 +5,7 @@
             <div class="col-md-12">
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
+                        Edit Brand
                         <form action="{{ route('brands.update', $brand->id) }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
@@ -67,6 +68,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
     <script>
-        CKEDITOR.replace('content');
+        CKEDITOR.replace('ktrg');
     </script>
 @endsection

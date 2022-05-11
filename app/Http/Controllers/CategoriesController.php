@@ -43,7 +43,7 @@ class CategoriesController extends Controller
     {
         $this->validate($request, [
             'acak' => 'required|image|mimes:png,jpg,jpeg,gif,svg|max:2048',
-            'nama' => 'required|min:5',
+            'name' => 'required|min:5',
             'rgks' => 'required|min:10',
             'ktrg' => 'required|min:10'
         ]);
@@ -51,7 +51,7 @@ class CategoriesController extends Controller
         $acak->storeAs('public/categories', $acak->hashName());
         Category::create([
             'acak' => $acak->hashName(),
-            'nama' => $request->nama,
+            'name' => $request->name,
             'rgks' => $request->rgks,
             'ktrg' => $request->ktrg,
         ]);
@@ -91,7 +91,7 @@ class CategoriesController extends Controller
     {
         $this->validate($request, [
             'acak' => 'image|mimes:png,jpg,jpeg,gif,svg|max:2048',
-            "nama" => 'required|min:5',
+            "name" => 'required|min:5',
             'rgks' => 'required|min:10',
             'ktrg' => 'required|min:10'
         ]);
@@ -101,13 +101,13 @@ class CategoriesController extends Controller
             Storage::delete('public/categories' . $category->acak);
             $category->update([
                 'acak' => $acak->hashName(),
-                'nama' => $request->nama,
+                'name' => $request->name,
                 'rgks' => $request->rgks,
                 'ktrg' => $request->ktrg,
             ]);
         } else {
             $category->update([
-                'nama' => $request->nama,
+                'name' => $request->name,
                 'rgks' => $request->rgks,
                 'ktrg' => $request->ktrg,
             ]);
