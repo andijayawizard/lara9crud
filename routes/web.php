@@ -3,8 +3,11 @@
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProductController;
+use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Yajra\Datatables\Datatables;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,3 +37,17 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/about', [App\Http\Controllers\AboutController::class, 'index'])->name('about');
 
 Auth::routes();
+
+Route::get('getUser', function (Request $request) {
+    if ($request->ajax()) {
+        $data = User::latest()->get();
+        return Datatables::of($data)
+            ->addIndexColumn()
+            ->addColumn('action', function ($row) {
+                $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+                return $actionBtn;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
+    }
+})->name('user.index');
