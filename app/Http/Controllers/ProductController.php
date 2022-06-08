@@ -18,7 +18,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::latest()->paginate(5);
+        // $products = Product::latest()->paginate(5);
+        $products = Product::select('products.*', 'categories.name as category', 'brands.name as brand')
+            ->join('categories', 'categories.id', '=', 'products.category_id')
+            ->join('brands', 'brands.id', '=', 'products.brand_id')
+            ->latest('products.created_at')->paginate(5);
 
         return view('products.index', compact('products'))
             ->with('i', (request()->input('page', 1) - 1) * 5);

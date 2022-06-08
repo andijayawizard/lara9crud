@@ -20,6 +20,10 @@ return new class extends Migration
             $table->text('detail');
             $table->string('acak', 100)->nullable()->default('acak');
             $table->enum('pub', ['0', '1'])->nullable();
+            $table->unsignedBigInteger('category_id')->nullable()->default(12);
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->unsignedBigInteger('brand_id')->nullable()->default(12);
+            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
             $table->timestamps();
         });
     }

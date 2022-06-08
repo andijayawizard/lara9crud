@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('brands', function (Blueprint $table) {
             $table->id();
-            $table->string('nama', 100)->nullable()->default('nama');
+            $table->string('name', 100)->nullable()->default('name');
             $table->text('rgks')->nullable();
             $table->text('ktrg')->nullable();
             $table->string('acak', 100)->nullable()->default('acak');

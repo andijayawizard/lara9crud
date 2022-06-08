@@ -34,6 +34,13 @@
             </a>
         </li>
         <li class="nav-item">
+            <a href="{{ route('subcategories.index') }}"
+                class="nav-link {{ Request::is('subcategories') ? 'active' : '' }}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Sub Categories</p>
+            </a>
+        </li>
+        <li class="nav-item">
             <a href="{{ route('brands.index') }}" class="nav-link {{ Request::is('brands') ? 'active' : '' }}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Brands</p>
@@ -44,6 +51,12 @@
                 class="nav-link {{ Request::is('products') ? 'active' : '' }}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Products</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ route('items.index') }}" class="nav-link {{ Request::is('items') ? 'active' : '' }}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Items</p>
             </a>
         </li>
     </ul>
