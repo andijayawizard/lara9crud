@@ -43,9 +43,9 @@ class CategoriesController extends Controller
     {
         $this->validate($request, [
             'acak' => 'required|image|mimes:png,jpg,jpeg,gif,svg|max:2048',
-            'name' => 'required|min:5',
-            'rgks' => 'required|min:10',
-            'ktrg' => 'required|min:10'
+            'name' => 'required|min:4',
+            'rgks' => 'required|min:4',
+            'ktrg' => 'required|min:4'
         ]);
         $acak = $request->file('acak');
         $acak->storeAs('public/categories', $acak->hashName());
@@ -91,9 +91,9 @@ class CategoriesController extends Controller
     {
         $this->validate($request, [
             'acak' => 'image|mimes:png,jpg,jpeg,gif,svg|max:2048',
-            "name" => 'required|min:5',
-            'rgks' => 'required|min:10',
-            'ktrg' => 'required|min:10'
+            "name" => 'required|min:4',
+            'rgks' => 'required|min:4',
+            'ktrg' => 'required|min:4'
         ]);
         if ($request->hasFile('acak')) {
             $acak = $request->file('acak');
