@@ -34,11 +34,44 @@
                                         placeholder="Name">
                                 </div>
                             </div>
+                            <div class="col-xs-12 col-sm-12 col-md-3">
+                                <div class="form-group">
+                                    <strong>Category:</strong>
+                                    <select name="category_id" id="category_id" class="form-control select2bs4" required>
+                                        <option>-- select category --</option>
+                                        <?php
+                                        foreach ($categories as $category) { ?>
+                                        <option <?php if ($product->category_id == $category->id) {
+                                            echo 'selected';
+                                        }
+                                        ?> value="{{ $category->id }}">
+                                            {{ $category->name }}
+                                        </option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-3">
+                                <div class="form-group">
+                                    <strong>Brand:</strong>
+                                    <select name="brand_id" id="brand_id" class="form-control select2bs4" required>
+                                        <option>-- select brand --</option>
+                                        <?php
+                                        foreach ($brands as $brand) { ?>
+                                        <option <?php if ($product->brand_id == $brand['id']) {
+                                            echo 'selected';
+                                        }
+                                        ?> value="{{ $brand->id }}">
+                                            {{ $brand->name }}
+                                        </option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <strong>Detail:</strong>
-                                    <textarea class="form-control" style="height:150px" name="detail"
-                                        placeholder="Detail">{{ $product->detail }}</textarea>
+                                    <textarea class="form-control" style="height:150px" name="detail" placeholder="Detail">{{ $product->detail }}</textarea>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12 text-center">

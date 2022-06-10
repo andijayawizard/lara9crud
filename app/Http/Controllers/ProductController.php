@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -35,7 +37,11 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        // $product = Product::select('*')->latest()->get();
+        $text = `create`;
+        $categories = Category::select('*')->latest()->get();
+        $brands = Brand::select('*')->latest()->get();
+        return view('products.createOrUpdate', compact('brands', 'categories'));
     }
 
     /**
@@ -48,6 +54,7 @@ class ProductController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'brand_id' => 'required',
             'detail' => 'required',
         ]);
 
@@ -76,7 +83,10 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('products.edit', compact('product'));
+        $text = `edit`;
+        $categories = Category::select('*')->latest()->get();
+        $brands = Brand::select('*')->latest()->get();
+        return view('products.createOrUpdate', compact('product', 'categories', 'brands'))->with('product', $product);
     }
 
     /**
@@ -90,6 +100,8 @@ class ProductController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            // 'category_id' => 'required',
+            // 'brand_id' => 'required',
             'detail' => 'required',
         ]);
 
