@@ -6,6 +6,7 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -38,10 +39,10 @@ class ProductController extends Controller
     public function create()
     {
         // $product = Product::select('*')->latest()->get();
-        $text = `create`;
+        $text = 'Create';
         $categories = Category::select('*')->latest()->get();
         $brands = Brand::select('*')->latest()->get();
-        return view('products.createOrUpdate', compact('brands', 'categories'));
+        return view('products.createOrUpdate', compact('brands', 'categories', 'text'));
     }
 
     /**
@@ -70,8 +71,12 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show($id)
     {
+        $product = Product::select('*', 'categories.name as category', 'brands.name as brand')
+            ->join('categories', 'categories.id', '=', 'products.category_id')
+            ->join('brands', 'brands.id', '=', 'products.brand_id')
+            ->findOrFail($id);
         return view('products.show', compact('product'));
     }
 
@@ -83,10 +88,13 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $text = `edit`;
+        $text = 'Edit';
+        // $product=Product::find($id);
         $categories = Category::select('*')->latest()->get();
         $brands = Brand::select('*')->latest()->get();
-        return view('products.createOrUpdate', compact('product', 'categories', 'brands'))->with('product', $product);
+        return view('products.createOrUpdate', compact('product', 'categories', 'brands'))
+            ->with('text', $text);
+        // ->with('product', $product);
     }
 
     /**
