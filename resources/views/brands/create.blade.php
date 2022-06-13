@@ -24,11 +24,11 @@
 
                             <div class="form-group">
                                 <label class="font-weight-bold">Nama Brand</label>
-                                <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama"
-                                    value="{{ old('nama') }}" placeholder="Nama Brand">
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
+                                    value="{{ old('name') }}" placeholder="Nama Brand">
 
                                 <!-- error message untuk title -->
-                                @error('nama')
+                                @error('name')
                                     <div class="alert alert-danger mt-2">
                                         {{ $message }}
                                     </div>
@@ -49,8 +49,7 @@
 
                             <div class="form-group">
                                 <label class="font-weight-bold">Keterangan</label>
-                                <textarea class="form-control @error('ktrg') is-invalid @enderror" name="ktrg" rows="4"
-                                    placeholder="Keterangan">{{ old('ktrg') }}</textarea>
+                                <textarea class="form-control @error('ktrg') is-invalid @enderror" name="ktrg" rows="4" placeholder="Keterangan">{{ old('ktrg') }}</textarea>
 
                                 <!-- error message untuk content -->
                                 @error('ktrg')

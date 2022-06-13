@@ -35,6 +35,8 @@ Route::get('/dashboard', function () {
 
 Route::resource('/posts', PostController::class);
 Route::resource('products', ProductController::class);
+// Route::get('products/createOrUpdate', ProductController::class);
+// Route::get('products/createOrUpdate/{id}', ProductController::class);
 Route::resource('brands', BrandController::class);
 Route::resource('categories', CategoriesController::class);
 Route::resource('subcategories', SubCategoryController::class);

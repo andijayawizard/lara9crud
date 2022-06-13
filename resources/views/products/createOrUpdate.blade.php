@@ -35,8 +35,8 @@
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>Name:</strong>
-                                <input type="text" name="name" value="{{ $product->name }}" class="form-control"
-                                    placeholder="Name">
+                                <input type="text" name="name" value="{{ isset($product->name) ? $product->name : '' }}"
+                                    class="form-control" placeholder="Name">
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-3">
@@ -45,10 +45,16 @@
                                 <select name="category_id" id="category_id" class="form-control select2bs4" required>
                                     <option>-- select category --</option>
                                     @foreach ($categories as $category)
-                                        <option @if ($product->category_id == $category->id) {{ 'selected' }} @endif
-                                            value="{{ $category->id }}">
-                                            {{ $category->name }}
-                                        </option>
+                                        @if (isset($product->category_id))
+                                            <option @if ($product->category_id == $category->id) {{ 'selected' }} @endif
+                                                value="{{ $category->id }}">
+                                                {{ $category->name }}
+                                            </option>
+                                        @else
+                                            <option value="{{ $category->id }}">
+                                                {{ $category->name }}
+                                            </option>
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>
@@ -59,10 +65,16 @@
                                 <select name="brand_id" id="brand_id" class="form-control select2bs4" required>
                                     <option>-- select brand --</option>
                                     @foreach ($brands as $brand)
-                                        <option @if ($product->brand_id == $brand->id) {{ 'selected' }} @endif
-                                            value="{{ $brand->id }}">
-                                            {{ $brand->name }}
-                                        </option>
+                                        @if (isset($product->brand_id))
+                                            <option @if ($product->brand_id == $brand->id) {{ 'selected' }} @endif
+                                                value="{{ $brand->id }}">
+                                                {{ $brand->name }}
+                                            </option>
+                                        @else
+                                            <option value="{{ $brand->id }}">
+                                                {{ $brand->name }}
+                                            </option>
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>
@@ -70,7 +82,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>Detail:</strong>
-                                <textarea class="form-control" style="height:150px" name="detail" placeholder="Detail">{{ $product->detail }}</textarea>
+                                <textarea class="form-control" style="height:150px" name="detail" placeholder="Detail">{{ isset($product->detail) ? $product->detail : '' }}</textarea>
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12 text-center">

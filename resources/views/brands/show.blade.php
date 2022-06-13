@@ -9,13 +9,13 @@
                         <h2>Brand Detail</h2>
                     </div>
                     <div class="pull-right">
-                        <a class="btn btn-primary" href="{{ route('brands.index') }}"> Back</a>
+                        <a class="btn btn-primary btn-sm" href="{{ route('brands.index') }}"> Back</a>
                     </div>
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>Nama:</strong>
-                                {{ $brand->nama }}
+                                {{ $brand->name }}
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">

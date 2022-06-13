@@ -30,7 +30,8 @@ class BrandController extends Controller
      */
     public function create()
     {
-        return view('brands.create');
+        $text = 'Create';
+        return view('brands.createOrUpdate')->with('text',);
     }
 
     /**
@@ -42,16 +43,16 @@ class BrandController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'acak' => 'required|image|mimes:png,jpg,jpeg,gif,svg|max:2048',
-            'nama' => 'required|min:5',
-            'rgks' => 'required|min:10',
+            // 'acak' => 'required|image|mimes:png,jpg,jpeg,gif,svg|max:2048',
+            'name' => 'required|min:5',
+            'rgks' => 'required|min:5',
             'ktrg' => 'required|min:10'
         ]);
         $acak = $request->file('acak');
-        $acak->storeAs('public/brands', $acak->hashName());
+        // $acak->storeAs('public/brands', $acak->hashName());
         Brand::create([
-            'acak' => $acak->hashName(),
-            'nama' => $request->nama,
+            // 'acak' => $acak->hashName(),
+            'name' => $request->name,
             'rgks' => $request->rgks,
             'ktrg' => $request->ktrg,
         ]);
@@ -91,8 +92,8 @@ class BrandController extends Controller
     {
         $this->validate($request, [
             'acak' => 'image|mimes:png,jpg,jpeg,gif,svg|max:2048',
-            "nama" => 'required|min:5',
-            'rgks' => 'required|min:10',
+            "name" => 'required|min:5',
+            'rgks' => 'required|min:5',
             'ktrg' => 'required|min:10'
         ]);
         if ($request->hasFile('acak')) {
@@ -101,13 +102,13 @@ class BrandController extends Controller
             Storage::delete('public/brands' . $brand->acak);
             $brand->update([
                 'acak' => $acak->hashName(),
-                'nama' => $request->nama,
+                'name' => $request->name,
                 'rgks' => $request->rgks,
                 'ktrg' => $request->ktrg,
             ]);
         } else {
             $brand->update([
-                'nama' => $request->nama,
+                'name' => $request->name,
                 'rgks' => $request->rgks,
                 'ktrg' => $request->ktrg,
             ]);
