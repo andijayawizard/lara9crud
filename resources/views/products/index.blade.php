@@ -6,6 +6,11 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-lg-12 margin-tb">
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-success">
+                            <p>{{ $message }}</p>
+                        </div>
+                    @endif
                     <div class="pull-left">
                         <h2>Products</h2>
                     </div>
@@ -15,11 +20,6 @@
                 </div>
             </div>
 
-            @if ($message = Session::get('success'))
-                <div class="alert alert-success">
-                    <p>{{ $message }}</p>
-                </div>
-            @endif
 
             <table class="table table-bordered">
                 <tr>

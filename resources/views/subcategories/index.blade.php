@@ -3,6 +3,11 @@
     <div class="container- mt-0 pt-2">
         <div class="row">
             <div class="col-md-12">
+                @if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                        <p>{{ $message }}</p>
+                    </div>
+                @endif
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
                         <a href="{{ route('subcategories.create') }}" class="btn btn-md btn-success mb-3">Add new

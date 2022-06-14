@@ -31,7 +31,8 @@
                                                 href="{{ route('brands.show', $item->id) }}">Show</a>
                                             <a href="{{ route('brands.edit', $item->id) }}"
                                                 class="btn btn-xs btn-primary">Edit</a>
-                                            <form onsubmit="return confirm('Apakah Anda Yakin ?');"
+                                            <form
+                                                onsubmit="return confirm('Apakah Anda Yakin akan menghapus data {{ $item->name }}?');"
                                                 action="{{ route('brands.destroy', $item->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')

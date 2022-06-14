@@ -31,7 +31,7 @@ class BrandController extends Controller
     public function create()
     {
         $text = 'Create';
-        return view('brands.createOrUpdate')->with('text',);
+        return view('brands.createOrUpdate')->with('text', $text);
     }
 
     /**
@@ -44,8 +44,8 @@ class BrandController extends Controller
     {
         $this->validate($request, [
             // 'acak' => 'required|image|mimes:png,jpg,jpeg,gif,svg|max:2048',
-            'name' => 'required|min:5',
-            'rgks' => 'required|min:5',
+            'name' => 'required|min:4',
+            'rgks' => 'required|min:4',
             'ktrg' => 'required|min:10'
         ]);
         $acak = $request->file('acak');
@@ -78,7 +78,7 @@ class BrandController extends Controller
      */
     public function edit(Brand $brand)
     {
-        return view('brands.edit', compact('brand'));
+        return view('brands.createOrUpdate', compact('brand'));
     }
 
     /**
@@ -92,8 +92,8 @@ class BrandController extends Controller
     {
         $this->validate($request, [
             'acak' => 'image|mimes:png,jpg,jpeg,gif,svg|max:2048',
-            "name" => 'required|min:5',
-            'rgks' => 'required|min:5',
+            "name" => 'required|min:4',
+            'rgks' => 'required|min:4',
             'ktrg' => 'required|min:10'
         ]);
         if ($request->hasFile('acak')) {

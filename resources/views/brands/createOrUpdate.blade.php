@@ -31,7 +31,6 @@
                     @endif
 
                     @csrf
-                    @method('PUT')
 
                     <div class="form-group">
                         <label class="font-weight-bold">GAMBAR</label>
@@ -41,7 +40,8 @@
                     <div class="form-group">
                         <label class="font-weight-bold">Nama Brand</label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
-                            value="{{ old('name', $brand->name) }}" placeholder="Masukkan Nama Brand">
+                            value="{{ isset($brand->name) ? old('name', $brand->name) : old('name') }}"
+                            placeholder="Masukkan Nama Brand">
 
                         <!-- error message untuk title -->
                         @error('name')
@@ -53,7 +53,8 @@
                     <div class="form-group">
                         <label class="font-weight-bold">Ringkasan</label>
                         <input type="text" class="form-control @error('rgks') is-invalid @enderror" name="rgks"
-                            value="{{ old('rgks', $brand->rgks) }}" placeholder="Ringkasan">
+                            value="{{ isset($brand->rgks) ? old('rgks', $brand->rgks) : old('rgks') }}"
+                            placeholder="Ringkasan">
 
                         <!-- error message untuk title -->
                         @error('rgks')
@@ -65,7 +66,7 @@
 
                     <div class="form-group">
                         <label class="font-weight-bold">Keterangan</label>
-                        <textarea class="form-control @error('ktrg') is-invalid @enderror" name="ktrg" rows="4" placeholder="Keterangan">{{ old('ktrg', $brand->ktrg) }}</textarea>
+                        <textarea class="form-control @error('ktrg') is-invalid @enderror" name="ktrg" rows="4" placeholder="Keterangan">{{ isset($brand->ktrg) ? old('ktrg', $brand->ktrg) : old('ktrg') }}</textarea>
 
                         <!-- error message untuk content -->
                         @error('ktrg')
