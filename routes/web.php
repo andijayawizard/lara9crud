@@ -4,7 +4,9 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SubCategoryController;
@@ -35,12 +37,12 @@ Route::get('/dashboard', function () {
 
 Route::resource('/posts', PostController::class);
 Route::resource('products', ProductController::class);
-// Route::get('products/createOrUpdate', ProductController::class);
-// Route::get('products/createOrUpdate/{id}', ProductController::class);
 Route::resource('brands', BrandController::class);
 Route::resource('categories', CategoriesController::class);
 Route::resource('subcategories', SubCategoryController::class);
 Route::resource('items', ItemController::class);
+Route::resource('orders', OrderController::class);
+Route::resource('invoices', InvoiceController::class);
 // require __DIR__ . '/auth.php';
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [AboutController::class, 'index'])->name('about');

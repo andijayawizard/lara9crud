@@ -59,5 +59,18 @@
                 <p>Items</p>
             </a>
         </li>
+        <li class="nav-item">
+            <a href="{{ route('orders.index') }}" class="nav-link {{ Request::is('orders') ? 'active' : '' }}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Orders</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ route('invoices.index') }}"
+                class="nav-link {{ Request::is('invoices') ? 'active' : '' }}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Invoices</p>
+            </a>
+        </li>
     </ul>
 </li>
