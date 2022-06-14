@@ -33,6 +33,30 @@
                             {!! $item->subcat !!}
                         </div>
                     </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <strong>Type:</strong>
+                            {!! $item->type !!}
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <strong>Price:</strong>
+                            {!! $item->price !!}
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <strong>Quantity in stock:</strong>
+                            {!! $item->quantity_in_stock !!}
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <strong>Description:</strong>
+                            {!! $item->description !!}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

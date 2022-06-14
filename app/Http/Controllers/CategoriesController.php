@@ -30,7 +30,9 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        return view('categories.create');
+        $text = 'Create';
+        return view('categories.createOrUpdate')
+            ->with('text', $text);
     }
 
     /**
@@ -77,7 +79,9 @@ class CategoriesController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('categories.edit', compact('category'));
+        $text = 'Edit';
+        return view('categories.createOrUpdate', compact('category'))
+            ->with('text', $text);
     }
 
     /**

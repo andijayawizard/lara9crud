@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -27,7 +28,11 @@ class SubCategoryController extends Controller
      */
     public function create()
     {
-        return view('subcategories.create');
+        $text = 'Create';
+        $categories = Category::select('*')->get();
+        return view('subcategories.createOrUpdate')
+            ->with('categories', $categories)
+            ->with('text', $text);
     }
 
     /**
@@ -40,6 +45,7 @@ class SubCategoryController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|min:4',
+            'category_id' => 'required',
             // 'acak' => 'required|image|mimes:png,jpg,jpeg,gif,svg|max:2048',
             // 'rgks' => 'required|min:4',
             // 'ktrg' => 'required|min:4'
@@ -47,7 +53,7 @@ class SubCategoryController extends Controller
         $acak = $request->file('acak');
         // $acak->storeAs('public/subcategories', $acak->hashName());
         SubCategory::create([
-            'name' => $request->name,
+            'name' => $request->name, 'category_id' => $request->category_id,
             // 'acak' => $acak->hashName(),
             // 'rgks' => $request->rgks,
             // 'ktrg' => $request->ktrg,
@@ -75,7 +81,11 @@ class SubCategoryController extends Controller
      */
     public function edit(SubCategory $subcategory)
     {
-        return view('subcategories.edit', compact('subcategory'));
+        $text = 'Edit';
+        $categories = Category::select('*')->get();
+        return view('subcategories.createOrUpdate', compact('subcategory'))
+            ->with('categories', $categories)
+            ->with('text', $text);
     }
 
     /**
@@ -98,14 +108,14 @@ class SubCategoryController extends Controller
             $acak->storeAs('public/subcategories', $acak->hashName());
             Storage::delete('public/subcategories' . $subcategory->acak);
             $subcategory->update([
-                'name' => $request->name,
+                'name' => $request->name, 'category_id' => $request->category_id,
                 // 'acak' => $acak->hashName(),
                 // 'rgks' => $request->rgks,
                 // 'ktrg' => $request->ktrg,
             ]);
         } else {
             $subcategory->update([
-                'name' => $request->name,
+                'name' => $request->name, 'category_id' => $request->category_id,
                 // 'rgks' => $request->rgks,
                 // 'ktrg' => $request->ktrg,
             ]);

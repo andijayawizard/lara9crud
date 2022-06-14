@@ -3,6 +3,11 @@
     <div class="container- mt-0 pt-2">
         <div class="row">
             <div class="col-md-12">
+                @if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                        <p>{{ $message }}</p>
+                    </div>
+                @endif
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
                         <a href="{{ route('categories.create') }}" class="btn btn-md btn-success mb-3">Add new Category</a>
@@ -10,7 +15,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col">Image</th>
-                                    <th scope="col">Nama Category</th>
+                                    <th scope="col">Nama</th>
                                     <th scope="col">Ringkasan</th>
                                     <th scope="col">Keterangan</th>
                                     <th scope="col">Action</th>
@@ -31,7 +36,8 @@
                                                 href="{{ route('categories.show', $item->id) }}">Show</a>
                                             <a href="{{ route('categories.edit', $item->id) }}"
                                                 class="btn btn-xs btn-primary">Edit</a>
-                                            <form onsubmit="return confirm('Apakah Anda Yakin ?');"
+                                            <form
+                                                onsubmit="return confirm('Apakah Anda Yakin akan menghapus data {{ $item->name }}?');"
                                                 action="{{ route('categories.destroy', $item->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')

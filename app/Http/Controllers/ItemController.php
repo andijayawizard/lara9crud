@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
@@ -29,7 +30,11 @@ class ItemController extends Controller
      */
     public function create()
     {
-        //
+        $text = 'Create';
+        $subcat = SubCategory::select('*')->get();
+        return view('items.createOrUpdate')
+            ->with('subcategories', $subcat)
+            ->with('text', $text);
     }
 
     /**
@@ -40,7 +45,14 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|min:4',
+            // 'sub_category_id' => 'required',
+        ]);
+        $masuk = Item::create($request->all());
+        $retVal = ($masuk) ? 'berhasil' : 'gagal maning';
+        return redirect()->route('items.index')
+            ->with('success', $retVal);
     }
 
     /**
@@ -66,7 +78,11 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-        return view('items.edit', compact('item'));
+        $text = 'Edit';
+        $subcategories = SubCategory::select('*')->get();
+        return view('items.createOrUpdate', compact('item'))
+            ->with('subcategories', $subcategories)
+            ->with('text', $text);
     }
 
     /**
@@ -76,9 +92,14 @@ class ItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Item $item)
     {
-        //
+        $request->validate([
+            'name' => 'required|min:4',
+            // 'sub_category_id' => 'required',
+        ]);
+        $item->update($request->all());
+        return redirect()->route('items.index')->with('success', 'item updated successfully');
     }
 
     /**

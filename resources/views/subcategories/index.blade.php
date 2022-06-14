@@ -30,7 +30,8 @@
                                                 href="{{ route('subcategories.show', $item->id) }}">Show</a>
                                             <a href="{{ route('subcategories.edit', $item->id) }}"
                                                 class="btn btn-xs btn-primary">Edit</a>
-                                            <form onsubmit="return confirm('Apakah Anda Yakin ?');"
+                                            <form
+                                                onsubmit="return confirm('Apakah Anda Yakin akan menghapus data {{ $item->name }}?');"
                                                 action="{{ route('subcategories.destroy', $item->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')

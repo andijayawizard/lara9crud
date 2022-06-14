@@ -3,9 +3,14 @@
     <div class="container- mt-0 pt-2">
         <div class="row">
             <div class="col-md-12">
+                @if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                        <p>{{ $message }}</p>
+                    </div>
+                @endif
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
-                        <a href="{{ route('items.create') }}" class="btn btn-md btn-success mb-3">Add new Category</a>
+                        <a href="{{ route('items.create') }}" class="btn btn-md btn-success mb-3">Add new Item</a>
                         <table class="table table-bordered table-hover table-striped">
                             <thead>
                                 <tr>
@@ -31,7 +36,8 @@
                                                 href="{{ route('items.show', $item->id) }}">Show</a>
                                             <a href="{{ route('items.edit', $item->id) }}"
                                                 class="btn btn-xs btn-primary">Edit</a>
-                                            <form onsubmit="return confirm('Apakah Anda Yakin ?');"
+                                            <form
+                                                onsubmit="return confirm('Apakah Anda Yakin akan menghapus data {{ $item->name }}?');"
                                                 action="{{ route('items.destroy', $item->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
