@@ -19,7 +19,7 @@ class ItemController extends Controller
         $items = Item::select('items.*', 'categories.name as category', 'sub_categories.name as subcat')
             ->join('sub_categories', 'sub_categories.id', '=', 'items.sub_category_id')
             ->join('categories', 'categories.id', '=', 'sub_categories.category_id')
-            ->latest()->paginate(5);
+            ->latest('items.created_at')->paginate(5);
         return view('items.index', compact('items'));
     }
 
