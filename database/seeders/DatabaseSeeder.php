@@ -118,11 +118,13 @@ class DatabaseSeeder extends Seeder
         $order2->items()->attach($item1);
         $order2->items()->attach($item4);
 
-        $invoice1 = Invoice::create([
-            'raised_at' => $faker->dateTimeThisMonth(),
-            'status' => 'settled',
-            'totalAmount' => $faker->randomNumber(3),
-            'order_id' => $order1->id
-        ]);
+        for ($i = 0; $i < 10; $i++) {
+            $invoice1 = Invoice::create([
+                'raised_at' => $faker->dateTimeThisMonth(),
+                'status' => 'settled',
+                'totalAmount' => $faker->randomNumber(3),
+                'order_id' => $order1->id
+            ]);
+        }
     }
 }
