@@ -88,20 +88,11 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $text = 'Edit';
-<<<<<<< HEAD
-        // $product=Product::find($id);
-        $categories = Category::select('*')->latest()->get();
-        $brands = Brand::select('*')->latest()->get();
-        return view('products.createOrUpdate', compact('product', 'categories', 'brands'))
-            ->with('text', $text);
-        // ->with('product', $product);
-=======
         $categories = Category::select('*')->latest()->get();
         $brands = Brand::select('*')->latest()->get();
         return view('products.createOrUpdate', compact('product', 'categories', 'brands'))
             ->with('text', $text)
             ->with('product', $product);
->>>>>>> rina
     }
 
     /**

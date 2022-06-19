@@ -35,14 +35,9 @@
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>Name:</strong>
-<<<<<<< HEAD
-                                <input type="text" name="name" value="{{ isset($product->name) ? $product->name : '' }}"
-                                    class="form-control" placeholder="Name">
-=======
                                 <input type="text" name="name"
                                     value="{{ isset($product->name) ? $product->name : '' }}" class="form-control"
                                     placeholder="Name">
->>>>>>> rina
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-3">

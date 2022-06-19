@@ -55,7 +55,8 @@
                 @endforeach
             </table>
 
-            {!! $products->links() !!}
+            {{-- {!! $products->appends(['sort'=>'votes'])->links() !!} --}}
+            {!! $products->appends(Request::all())->links() !!}
         </div>
 
     </div>
