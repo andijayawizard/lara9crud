@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 @section('content')
     <div class="container- mt-0 pt-2">
         <div class="row">

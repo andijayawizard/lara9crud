@@ -1,5 +1,5 @@
 {{-- @extends('products.layout') --}}
-@extends('layouts.app')
+@extends('adminlte::page')
 
 @section('content')
     <div class="card border-0 mt-0">

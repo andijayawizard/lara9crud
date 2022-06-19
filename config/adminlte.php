@@ -273,12 +273,24 @@ return [
                     'url'  => 'categories',
                 ],
                 [
-                    'text'    => 'level_one',
+                    'text'    => 'Product',
                     'url'     => '#',
                     'submenu' => [
                         [
-                            'text' => 'level_two',
-                            'url'  => '#',
+                            'text' => 'Category',
+                            'url'  => 'categories',
+                        ],
+                        [
+                            'text' => 'Sub Category',
+                            'url'  => 'subcategories',
+                        ],
+                        [
+                            'text' => 'Brand',
+                            'url'  => 'brands',
+                        ],
+                        [
+                            'text' => 'Product',
+                            'url'  => 'products',
                         ],
                         [
                             'text'    => 'level_two',
