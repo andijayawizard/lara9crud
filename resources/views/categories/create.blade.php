@@ -1,4 +1,8 @@
-@extends('layouts.app')
+@extends('adminlte::page')
+@section('title', 'Create Category')
+@section('content_header')
+    <h1>Create Category</h1>
+@stop
 @section('content')
     <div class="container- mt-0 mb-0 pt-2">
         <div class="row">
@@ -12,7 +16,8 @@
 
                             <div class="form-group">
                                 <label class="font-weight-bold">GAMBAR</label>
-                                <input type="file" class="form-control @error('acak') is-invalid @enderror" name="acak">
+                                <input type="file" class="form-control @error('acak') is-invalid @enderror"
+                                    name="acak">
 
                                 <!-- error message untuk title -->
                                 @error('acak')
@@ -24,8 +29,8 @@
 
                             <div class="form-group">
                                 <label class="font-weight-bold">Nama Category</label>
-                                <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
-                                    value="{{ old('name') }}" placeholder="Nama Category">
+                                <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                    name="name" value="{{ old('name') }}" placeholder="Nama Category">
 
                                 <!-- error message untuk title -->
                                 @error('name')
@@ -36,8 +41,8 @@
                             </div>
                             <div class="form-group">
                                 <label class="font-weight-bold">Ringkasan</label>
-                                <input type="text" class="form-control @error('rgks') is-invalid @enderror" name="rgks"
-                                    value="{{ old('rgks') }}" placeholder="Ringkasan">
+                                <input type="text" class="form-control @error('rgks') is-invalid @enderror"
+                                    name="rgks" value="{{ old('rgks') }}" placeholder="Ringkasan">
 
                                 <!-- error message untuk title -->
                                 @error('rgks')
@@ -49,7 +54,8 @@
 
                             <div class="form-group">
                                 <label class="font-weight-bold">Keterangan</label>
-                                <textarea class="form-control @error('ktrg') is-invalid @enderror" name="ktrg" rows="4" placeholder="Keterangan">{{ old('ktrg') }}</textarea>
+                                <textarea class="form-control @error('ktrg') is-invalid @enderror" name="ktrg" rows="4"
+                                    placeholder="Keterangan">{{ old('ktrg') }}</textarea>
 
                                 <!-- error message untuk content -->
                                 @error('ktrg')

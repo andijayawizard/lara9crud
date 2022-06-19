@@ -58,3 +58,6 @@ Route::get('getUser', function (Request $request) {
             ->make(true);
     }
 })->name('user.index');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
