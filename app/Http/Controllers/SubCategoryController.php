@@ -16,8 +16,7 @@ class SubCategoryController extends Controller
      */
     public function index()
     {
-        // $subcategories = SubCategory::latest()->paginate(5);
-        $subcategories = SubCategory::select('sub_categories.*', 'categories.name as category')->join('categories', 'categories.id', '=', 'sub_categories.category_id')->latest()->paginate(5);
+        $subcategories = SubCategory::select('sub_categories.*', 'categories.name as category')->join('categories', 'categories.id', '=', 'sub_categories.category_id')->latest()->paginate(10);
         return view('subcategories.index', compact('subcategories'));
     }
 

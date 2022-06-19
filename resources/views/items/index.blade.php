@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 @section('content')
     <div class="container- mt-0 pt-2">
         <div class="row">
@@ -25,8 +25,8 @@
                                 @forelse ($items as $item)
                                     <tr>
                                         <td class="text-center">
-                                            <img src="{{ Storage::url('public/items/') . $item->acak }}"
-                                                class="rounded" style="width: 100px">
+                                            <img src="{{ Storage::url('public/items/') . $item->acak }}" class="rounded"
+                                                style="width: 100px">
                                         </td>
                                         <td>{{ $item->name }}</td>
                                         <td>{!! $item->category !!}</td>

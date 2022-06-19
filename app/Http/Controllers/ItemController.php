@@ -15,11 +15,14 @@ class ItemController extends Controller
      */
     public function index()
     {
-        // $items = Item::latest()->paginate(5);
         $items = Item::select('items.*', 'categories.name as category', 'sub_categories.name as subcat')
             ->join('sub_categories', 'sub_categories.id', '=', 'items.sub_category_id')
             ->join('categories', 'categories.id', '=', 'sub_categories.category_id')
+<<<<<<< HEAD
             ->latest('items.created_at')->paginate(5);
+=======
+            ->latest()->paginate(10);
+>>>>>>> rina
         return view('items.index', compact('items'));
     }
 
