@@ -85,8 +85,8 @@ return [
 
     'layout_topnav' => null,
     'layout_boxed' => null,
-    'layout_fixed_sidebar' => null,
-    'layout_fixed_navbar' => null,
+    'layout_fixed_sidebar' => true,
+    'layout_fixed_navbar' => true,
     'layout_fixed_footer' => null,
     'layout_dark_mode' => null,
 
@@ -269,10 +269,6 @@ return [
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
                 [
-                    'text' => 'Category',
-                    'url'  => 'categories',
-                ],
-                [
                     'text'    => 'Product',
                     'url'     => '#',
                     'submenu' => [
@@ -293,6 +289,10 @@ return [
                             'url'  => 'products',
                         ],
                         [
+                            'text' => 'Item',
+                            'url'  => 'items',
+                        ],
+                        [
                             'text'    => 'level_two',
                             'url'     => '#',
                             'submenu' => [
@@ -307,10 +307,6 @@ return [
                             ],
                         ],
                     ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
                 ],
             ],
         ],

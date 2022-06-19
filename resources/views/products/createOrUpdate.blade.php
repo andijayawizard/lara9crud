@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="pull-left">
-                        {{-- <h2>{{ $text }} Product</h2> --}}
+                        <h2>{{ $text }} Product</h2>
                     </div>
                     <div class="pull-right">
                         <a class="btn btn-primary btn-xs" href="{{ route('products.index') }}"> Back</a>
@@ -35,8 +35,9 @@
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>Name:</strong>
-                                <input type="text" name="name" value="{{ isset($product->name) }}"
-                                    class="form-control" placeholder="Name">
+                                <input type="text" name="name"
+                                    value="{{ isset($product->name) ? $product->name : '' }}" class="form-control"
+                                    placeholder="Name">
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-3">
@@ -44,15 +45,18 @@
                                 <strong>Category:</strong>
                                 <select name="category_id" id="category_id" class="form-control select2bs4" required>
                                     <option>-- select category --</option>
-                                    <?php
-                                        foreach ($categories as $category) { ?>
-                                    <option <?php if (isset($product->category_id) == $category->id) {
-                                        echo 'selected';
-                                    }
-                                    ?> value="{{ $category->id }}">
-                                        {{ $category->name }}
-                                    </option>
-                                    <?php } ?>
+                                    @foreach ($categories as $category)
+                                        @if (isset($product->category_id))
+                                            <option @if ($product->category_id == $category->id) {{ 'selected' }} @endif
+                                                value="{{ $category->id }}">
+                                                {{ $category->name }}
+                                            </option>
+                                        @else
+                                            <option value="{{ $category->id }}">
+                                                {{ $category->name }}
+                                            </option>
+                                        @endif
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -61,22 +65,25 @@
                                 <strong>Brand:</strong>
                                 <select name="brand_id" id="brand_id" class="form-control select2bs4" required>
                                     <option>-- select brand --</option>
-                                    <?php
-                                        foreach ($brands as $brand) { ?>
-                                    <option <?php if (isset($product->brand_id) == $brand['id']) {
-                                        echo 'selected';
-                                    }
-                                    ?> value="{{ $brand->id }}">
-                                        {{ $brand->name }}
-                                    </option>
-                                    <?php } ?>
+                                    @foreach ($brands as $brand)
+                                        @if (isset($product->brand_id))
+                                            <option @if ($product->brand_id == $brand->id) {{ 'selected' }} @endif
+                                                value="{{ $brand->id }}">
+                                                {{ $brand->name }}
+                                            </option>
+                                        @else
+                                            <option value="{{ $brand->id }}">
+                                                {{ $brand->name }}
+                                            </option>
+                                        @endif
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>Detail:</strong>
-                                <textarea class="form-control" style="height:150px" name="detail" placeholder="Detail">{{ isset($product->detail) }}</textarea>
+                                <textarea class="form-control" style="height:150px" name="detail" placeholder="Detail">{{ isset($product->detail) ? $product->detail : '' }}</textarea>
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12 text-center">

@@ -20,11 +20,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        // $products = Product::latest()->paginate(5);
         $products = Product::select('products.*', 'categories.name as category', 'brands.name as brand')
             ->join('categories', 'categories.id', '=', 'products.category_id')
             ->join('brands', 'brands.id', '=', 'products.brand_id')
-            ->latest('products.created_at')->paginate(5);
+            ->latest('products.created_at')->paginate(10);
 
         return view('products.index', compact('products'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
@@ -83,10 +82,12 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $text = `edit`;
+        $text = 'Edit';
         $categories = Category::select('*')->latest()->get();
         $brands = Brand::select('*')->latest()->get();
-        return view('products.createOrUpdate', compact('product', 'categories', 'brands'))->with('product', $product);
+        return view('products.createOrUpdate', compact('product', 'categories', 'brands'))
+            ->with('text', $text)
+            ->with('product', $product);
     }
 
     /**
