@@ -1,4 +1,4 @@
-@extends('adminlte::page')
+@extends('layouts.app')
 @section('content')
     <h1 class="mt-4">Dashboard</h1>
     <ol class="mb-4 breadcrumb">
