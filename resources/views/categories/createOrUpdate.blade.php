@@ -1,4 +1,8 @@
-@extends('layouts.app')
+@extends('adminlte::page')
+@section('title', $text . 'Categories')
+{{-- @section('content_header')
+    <h1>Categories</h1>
+@stop --}}
 
 @section('content')
     <div class="row">
@@ -6,7 +10,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="pull-left">
-                        <h2>{{ $text }} Item</h2>
+                        <h2>{{ $text }} Category</h2>
                     </div>
                     <div class="pull-right">
                         <a class="btn btn-primary btn-xs" href="{{ route('items.index') }}"> Back</a>
@@ -41,7 +45,7 @@
                     <div class="form-group">
                         <label class="font-weight-bold">Nama Category</label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
-                            value="{{ isset($category->name) ? old('rgks', $category->name) : old('name') }}"
+                            value="{{ isset($category->name) ? old('name', $category->name) : old('name') }}"
                             placeholder="Masukkan Nama Category">
                         {{-- <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
                             value="{{ old('name', $category->name) }}" placeholder="Masukkan Nama Category"> --}}
@@ -69,7 +73,8 @@
 
                     <div class="form-group">
                         <label class="font-weight-bold">Keterangan</label>
-                        <textarea class="form-control @error('ktrg') is-invalid @enderror" name="ktrg" rows="4" placeholder="Keterangan">{{ isset($category->ktrg) ? old('ktrg', $category->ktrg) : old('ktrg') }}</textarea>
+                        <textarea class="form-control @error('ktrg') is-invalid @enderror" name="ktrg" rows="4"
+                            placeholder="Keterangan">{{ isset($category->ktrg) ? old('ktrg', $category->ktrg) : old('ktrg') }}</textarea>
 
                         <!-- error message untuk content -->
                         @error('ktrg')

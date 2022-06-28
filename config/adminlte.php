@@ -293,6 +293,10 @@ return [
                             'url'  => 'items',
                         ],
                         [
+                            'text' => 'Car',
+                            'url'  => 'car',
+                        ],
+                        [
                             'text'    => 'level_two',
                             'url'     => '#',
                             'submenu' => [

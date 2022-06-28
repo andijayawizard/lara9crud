@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CarController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ItemController;
@@ -43,9 +44,11 @@ Route::resource('subcategories', SubCategoryController::class);
 Route::resource('items', ItemController::class);
 Route::resource('orders', OrderController::class);
 Route::resource('invoices', InvoiceController::class);
+Route::middleware(['auth'])->resource('car', CarController::class);
 // require __DIR__ . '/auth.php';
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
+Route::get('/articles')->name('articles');
 
 Auth::routes();
 

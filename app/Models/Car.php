@@ -5,16 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Transaction extends Model
+class Car extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    public function user()
+    public function transactions()
     {
-        return $this->belongsTo(User::class);
-    }
-    public function car()
-    {
-        return $this->belongsTo(User::class);
+        return $this->hasMany(Transaction::class);
     }
 }

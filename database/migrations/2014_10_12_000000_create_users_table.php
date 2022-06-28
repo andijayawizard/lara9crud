@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('password');
             $table->string('gender', 100)->nullable()->default('gender');
             $table->string('phone', 100)->nullable()->default('phone');
+            $table->string('image')->nullable();
+            $table->boolean('is_admin')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });
