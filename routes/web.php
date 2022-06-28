@@ -11,6 +11,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SubCategoryController;
+use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -45,26 +46,26 @@ Route::resource('items', ItemController::class);
 Route::resource('orders', OrderController::class);
 Route::resource('invoices', InvoiceController::class);
 Route::middleware(['auth'])->resource('car', CarController::class);
+Route::middleware(['auth'])->resource('user', UserController::class);
 // require __DIR__ . '/auth.php';
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/articles')->name('articles');
 
-Auth::routes();
 
-Route::get('getUser', function (Request $request) {
-    if ($request->ajax()) {
-        $data = User::latest()->get();
-        return Datatables::of($data)
-            ->addIndexColumn()
-            ->addColumn('action', function ($row) {
-                $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
-                return $actionBtn;
-            })
-            ->rawColumns(['action'])
-            ->make(true);
-    }
-})->name('user.index');
+// Route::get('getUser', function (Request $request) {
+//     if ($request->ajax()) {
+//         $data = User::latest()->get();
+//         return Datatables::of($data)
+//             ->addIndexColumn()
+//             ->addColumn('action', function ($row) {
+//                 $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+//                 return $actionBtn;
+//             })
+//             ->rawColumns(['action'])
+//             ->make(true);
+//     }
+// })->name('user.index');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

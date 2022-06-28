@@ -269,6 +269,11 @@ return [
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
                 [
+                    'text'    => 'User',
+                    'url'     => 'user',
+
+                ],
+                [
                     'text'    => 'Product',
                     'url'     => '#',
                     'submenu' => [

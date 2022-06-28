@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Attribute;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -68,4 +69,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Transaction::class);
     }
+    // public function gravatar(): Attribute
+    // {
+    //     $hash = md5(strtolower(trim($this->attributes['email'])));
+    //     return new Attribute(
+    //         get: fn () => "http://www.gravatar.com/avatar/$hash",
+    //     );
+    // }
 }
