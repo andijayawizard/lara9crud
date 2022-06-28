@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Facade;
+use Yajra\DataTables\DataTablesServiceProvider;
 
 return [
 
@@ -176,7 +177,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        DataTablesServiceProvider::class,
     ],
 
     /*

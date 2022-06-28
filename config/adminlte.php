@@ -274,6 +274,11 @@ return [
 
                 ],
                 [
+                    'text'    => 'Transaction',
+                    'url'     => 'transaction',
+
+                ],
+                [
                     'text'    => 'Product',
                     'url'     => '#',
                     'submenu' => [
