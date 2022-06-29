@@ -41,22 +41,22 @@ class TransactionController extends Controller
                     return number_format($transaction->total, 2);
                 })
                 ->addColumn('action', function (Transaction $transaction) {
-                    $btn = '<a href=' . route("transaction.edit", $transaction->id) . ' class="edit btn btn-success btn-sm"><i class="fas fa-edit"></i></a>';
+                    $btn = '<a href=' . route("transaction.edit", $transaction->id) . ' class="edit btn btn-success btn-sm"><i class="fas fa-edit"></i>edit</a>';
                     $btn = $btn . '<form class="d-inline" action=' . route("transaction.destroy", $transaction->id) . ' method="POST">
 <input type="hidden" name="_method" value="DELETE">
 <input type="hidden" name="_token" value=' . csrf_token() . '>
-<button class="btn btn-danger btn-sm" type="submit"><i class="fas fa-trash"></i></button>
+<button class="btn btn-danger btn-sm" type="submit"><i class="fas fa-trash"></i>delete</button>
 </form>';
-                    $btn = $btn . '<a href=' . route("transaction.show", $transaction->id) . ' class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>';
+                    $btn = $btn . '<a href=' . route("transaction.show", $transaction->id) . ' class="btn btn-info btn-sm"><i class="fas fa-eye"></i>detail</a>';
                     $btn = $btn . '<form class="d-inline" action=' . route("transaction.status", $transaction->id) . ' method="POST">
 <input type="hidden" name="_token" value=' . csrf_token() . '>
 <input type="hidden" name="status" value="SUCCESS">
-<button class="btn btn-outline-success btn-sm" type="submit"><i class="far fa-check-circle"></i></button>
+<button class="btn btn-outline-success btn-sm" type="submit"><i class="far fa-check-circle"></i>success</button>
 </form>';
                     $btn = $btn . '<form class="d-inline" action=' . route("transaction.status", $transaction->id) . ' method="POST">
 <input type="hidden" name="_token" value=' . csrf_token() . '>
 <input type="hidden" name="status" value="FAILED">
-<button class="btn btn-outline-danger btn-sm" type="submit"><i class="far fa-times-circle"></i></button>
+<button class="btn btn-outline-danger btn-sm" type="submit"><i class="far fa-times-circle"></i>failed</button>
 </form>';
                     return $btn;
                 })
@@ -125,9 +125,10 @@ class TransactionController extends Controller
      */
     public function edit(Transaction $transaction)
     {
+        $text = 'Edit';
         $users = User::all();
         $cars = Car::all();
-        return view('transaction.edit', compact('users', 'cars', 'transaction'));
+        return view('transaction.createOrUpdate', compact('users', 'cars', 'transaction', 'text'));
     }
 
     /**

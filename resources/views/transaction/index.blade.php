@@ -1,4 +1,5 @@
 @extends('layouts.app')
+{{-- @extends('adminlte::page') --}}
 @section('content')
     <h1 class="mt-4">Dashboard</h1>
     <ol class="mb-4 breadcrumb">
@@ -44,6 +45,8 @@
         </tbody>
     </table>
 @endsection
+{{-- @stack('style')
+    @stack('script') --}}
 
 @push('style')
     <meta name="csrf-token" content="{{ csrf_token() }}">

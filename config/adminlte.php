@@ -121,7 +121,7 @@ return [
     |
     */
 
-    'classes_body' => '',
+    'classes_body' => 'hold-transition dark-mode- sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed- text-sm',
     'classes_brand' => '',
     'classes_brand_text' => '',
     'classes_content_wrapper' => '',
@@ -256,12 +256,12 @@ return [
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
-            'url'  => 'admin/settings',
+            'url'  => 'profile',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
             'text' => 'change_password',
-            'url'  => 'admin/settings',
+            'url'  => 'profile/password',
             'icon' => 'fas fa-fw fa-lock',
         ],
         [
