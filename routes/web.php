@@ -55,7 +55,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('transaction/{transaction:id}/status', [TransactionController::class, 'status'])->name('transaction.status');
 });
 Route::get('profile/password', [ProfileController::class, 'password']);
-Route::put('change-password', [ProfileController::class, 'change_password'])->name('change-password');
+Route::post('change-password', [ProfileController::class, 'change_password'])->name('change-password');
 Route::get('profile', [ProfileController::class, 'profile'])->name('profile');
 Route::post('change-profile', [ProfileController::class, 'change_profile'])->name('change-profile');
 // require __DIR__ . '/auth.php';

@@ -1,5 +1,5 @@
-@extends('layouts.app')
-{{-- @extends('adminlte::page') --}}
+{{-- @extends('layouts.app') --}}
+@extends('adminlte::page')
 @section('content')
     <h1 class="mt-4">Dashboard</h1>
     <ol class="mb-4 breadcrumb">

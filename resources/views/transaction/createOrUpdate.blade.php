@@ -20,7 +20,7 @@
         <label for="user_id" class="form-label">Pilih Pelanggan</label>
         <select class="form-select" id="user_id" name="user_id">
             @foreach ($users as $user)
-                <option {{ old('user_id', $transaction->user_id) == $user->id ? 'selected' : '' }}
+                <option {{ old('user_id', isset($transaction->user_id)) == $user->id ? 'selected' : '' }}
                     value="{{ $user->id }}">{{ $user->name }}</option>
             @endforeach
         </select>
@@ -32,7 +32,7 @@
         <label for="name" class="form-label">Pilih Mobil</label>
         <select class="form-select" id="status" name="car_id">
             @foreach ($cars as $car)
-                <option {{ old('car_id', $transaction->car_id) == $car->id ? 'selected' : '' }}
+                <option {{ old('car_id', isset($transaction->car_id)) == $car->id ? 'selected' : '' }}
                     value="{{ $car->id }}">{{ $car->name }}</option>
             @endforeach
         </select>
