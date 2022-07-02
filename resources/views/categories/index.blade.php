@@ -15,7 +15,7 @@
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
                         <a href="{{ route('categories.create') }}" class="btn btn-md btn-success mb-3">Add new Category</a>
-                        <table class="table table-bordered table-hover table-striped">
+                        <table id='categories-table' class="table table-bordered table-hover table-striped">
                             <thead>
                                 <tr>
                                     <th scope="col">Image</th>
@@ -56,6 +56,22 @@
                                 @endforelse
                             </tbody>
                         </table>
+                        {{-- <script>
+                            $(document).ready(function() {
+                                $('#categories-table').DataTable({
+                                    "serverSide": true,
+                                    "ajax": {
+                                        // url: {{ action('CategoriesController@index') }}
+                                        // url: "{{ action('ProductsController@productsDataSource') }}",
+                                        method: "get"
+                                    },
+                                    "columnDefs": [{
+                                        'targets': [4],
+                                        'orderable': false
+                                    }],
+                                });
+                            });
+                        </script> --}}
                         {{ $categories->links() }}
                     </div>
                 </div>
