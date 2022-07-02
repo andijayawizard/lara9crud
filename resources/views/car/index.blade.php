@@ -1,4 +1,5 @@
 @extends('adminlte::page')
+@section('title', 'Cars')
 
 @section('content')
     <h1 class="mt-4">
@@ -49,7 +50,8 @@
                         <form class="d-inline" action="{{ route('car.destroy', $car->id) }}" method="POST">
                             @csrf
                             @method('delete')
-                            <button class="btn btn-danger" onclick="return confirm('Hapus data mobil ini?')">Hapus</button>
+                            <button class="btn btn-danger"
+                                onclick="return confirm('Hapus data mobil {{ $car->name }}?')">Hapus</button>
                         </form>
                         <a href="{{ route('car.edit', $car->id) }}" class="btn btn-success">Edit</a>
                         <button type="button" class="btn btn-info" data-bs-toggle="modal"

@@ -90,7 +90,15 @@ class CarController extends Controller
      */
     public function update(Request $request, Car $car)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|min:4',
+            'plat' => 'required|min:4',
+        ]);
+        $car->update([
+            'name' => $request->name,
+            'plat' => $request->plat,
+        ]);
+        return redirect()->route('car.index')->with('message', 'updated successfully');
     }
 
     /**
