@@ -17,7 +17,11 @@ class CarFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->name('honda', 'toyota', 'suzuki'),
+            'plat' => $this->faker->randomNumber(4),
+            'status' => $this->faker->randomNumber(1),
+            'price' => $this->faker->randomNumber(4),
+            'description' => $this->faker->text()
         ];
     }
 }

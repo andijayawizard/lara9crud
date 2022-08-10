@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Facade;
+use Kyslik\ColumnSortable\ColumnSortableServiceProvider;
 use Yajra\DataTables\DataTablesServiceProvider;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -179,6 +180,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         DataTablesServiceProvider::class,
+        ColumnSortableServiceProvider::class
     ],
 
     /*

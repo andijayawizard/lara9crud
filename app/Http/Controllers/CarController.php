@@ -15,13 +15,25 @@ class CarController extends Controller
      */
     public function index(Request $request)
     {
-        $search = $request->search;
-        $cars = Car::where('name', 'like', '%' . $search . '%')
-            ->orWhere('plat', 'like', '%' . $search . '%')
-            ->orWhere('price', 'like', '%' . $search . '%')
-            ->latest()
-            ->paginate(10);
-        return view('car.index', compact('cars'));
+        $filter = $request->query('filter');
+        if (!empty($filter)) {
+            $cars = Car::sortable()
+                ->where('cars.name', 'like', '%' . $filter . '%')
+                ->paginate(5);
+        } else {
+            $cars = Car::sortable()
+                ->paginate(5);
+        }
+
+        // $search = $request->search;
+        // $cars = Car::where('name', 'like', '%' . $search . '%')
+        //     ->orWhere('plat', 'like', '%' . $search . '%')
+        //     ->orWhere('price', 'like', '%' . $search . '%')
+        //     ->sortable()
+        //     ->latest()
+        //     ->paginate(10);
+        return view('car.index', compact('cars'))
+            ->with('filter', $filter);
     }
 
     /**
@@ -90,7 +102,15 @@ class CarController extends Controller
      */
     public function update(Request $request, Car $car)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|min:4',
+            'plat' => 'required|min:4',
+        ]);
+        $car->update([
+            'name' => $request->name,
+            'plat' => $request->plat,
+        ]);
+        return redirect()->route('car.index')->with('message', 'updated successfully');
     }
 
     /**

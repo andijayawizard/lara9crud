@@ -48,6 +48,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('products', ProductController::class);
     Route::resource('brands', BrandController::class);
     Route::resource('categories', CategoriesController::class);
+    Route::get('categories', [CategoriesController::class, 'index']);
     Route::resource('subcategories', SubCategoryController::class);
     Route::resource('items', ItemController::class);
     Route::resource('orders', OrderController::class);

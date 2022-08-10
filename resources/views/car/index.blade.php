@@ -1,4 +1,5 @@
 @extends('adminlte::page')
+@section('title', 'Cars')
 
 @section('content')
     <h1 class="mt-4">
@@ -24,15 +25,23 @@
             </div>
         </form>
     </div>
-    <table class="table">
+    <form class="form-inline" method="GET">
+        <div class="form-group mb-2">
+            <label for="filter" class="col-sm-2 col-form-label">Filter</label>
+            <input type="text" class="form-control" id="filter" name="filter" placeholder="Product name..."
+                value="{{ $filter }}">
+        </div>
+        <button type="submit" class="btn btn-default mb-2">Filter</button>
+    </form>
+    <table class="table table-hover">
         <thead>
             <tr>
-                <th scope="col">No</th>
-                <th scope="col">Nama</th>
+                <th scope="col">@sortablelink('no')</th>
+                <th scope="col">@sortablelink('nama')</th>
                 <th scope="col">Image</th>
-                <th scope="col">Plat</th>
-                <th scope="col">Status</th>
-                <th scope="col">Harga</th>
+                <th scope="col">@sortablelink('plat')</th>
+                <th scope="col">@sortablelink('status')</th>
+                <th scope="col">@sortablelink('harga')</th>
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -49,15 +58,14 @@
                         <form class="d-inline" action="{{ route('car.destroy', $car->id) }}" method="POST">
                             @csrf
                             @method('delete')
-                            <button class="btn btn-danger" onclick="return confirm('Hapus data mobil ini?')">Hapus</button>
+                            <button class="btn btn-danger"
+                                onclick="return confirm('Hapus data mobil {{ $car->name }}?')">Hapus</button>
                         </form>
                         <a href="{{ route('car.edit', $car->id) }}" class="btn btn-success">Edit</a>
                         <button type="button" class="btn btn-info" data-bs-toggle="modal"
                             data-bs-target="#detail{{ $car->id }}">Detail</button>
                     </td>
                 </tr>
-
-                {{ $cars->links() }}
             @empty
                 <tr>
                     <td colspan="6" class="text-center">
@@ -67,6 +75,11 @@
             @endforelse
         </tbody>
     </table>
+    {!! $cars->appends(Request::except('page'))->render() !!}
+    {{-- {{ $cars->links() }} --}}
+    <p>
+        Displaying {{ $cars->count() }} of {{ $cars->total() }} car(s).
+    </p>
     <div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="detail{{ $car->id }}"
         tabindex="-1" aria-labelledby="detail{{ $car->id }}Label" aria-hidden="true">
         <div class="modal-dialog">

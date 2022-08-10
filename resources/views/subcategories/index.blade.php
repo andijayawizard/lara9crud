@@ -46,7 +46,7 @@
                                     </tr>
                                 @empty
                                     <div class="alert alert-danger">
-                                        Data Category belum Tersedia.
+                                        Data Sub Category belum Tersedia.
                                     </div>
                                 @endforelse
                             </tbody>

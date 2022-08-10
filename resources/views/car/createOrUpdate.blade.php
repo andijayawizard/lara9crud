@@ -1,5 +1,5 @@
 @extends('adminlte::page')
-@section('title', $text . ' Categories')
+@section('title', $text . ' Car')
 {{-- @section('content_header')
     <h1>Categories</h1>
 @stop --}}
