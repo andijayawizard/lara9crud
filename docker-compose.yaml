@@ -60,4 +60,4 @@ networks:
   app_network:
     driver: bridge
 volumes:
-  db-lara9crud:
+  db-data:
