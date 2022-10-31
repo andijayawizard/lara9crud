@@ -39,8 +39,12 @@ Route::get('/', function () {
 // Route::get('/dashboard', function () {
 //     return view('dashboard/index');
 // })->middleware(['auth'])->name('dashboard');
-Route::group(['middleware' => 'auth'], function () {
+Route::middleware(['auth'])->group(function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('dashboard', DashboardController::class);
+});
+Route::group(['middleware' => 'auth', 'admin'], function () {
+    Route::get('admin/home', [HomeController::class, 'handleAdmin'])->name('admin.route');
     Route::resource('car', CarController::class);
     Route::resource('user', UserController::class);
     Route::resource('transaction', TransactionController::class);
@@ -60,7 +64,7 @@ Route::post('change-password', [ProfileController::class, 'change_password'])->n
 Route::get('profile', [ProfileController::class, 'profile'])->name('profile');
 Route::post('change-profile', [ProfileController::class, 'change_profile'])->name('change-profile');
 // require __DIR__ . '/auth.php';
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+// Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/articles')->name('articles');
 
@@ -78,5 +82,4 @@ Route::get('/articles')->name('articles');
 //     }
 // })->name('user.index');
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
